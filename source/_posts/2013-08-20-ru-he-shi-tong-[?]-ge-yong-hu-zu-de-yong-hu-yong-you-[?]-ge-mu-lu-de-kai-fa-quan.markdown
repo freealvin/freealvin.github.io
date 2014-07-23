@@ -5,7 +5,7 @@ date: 2013-08-20 06:17
 comments: true
 categories: Linux 
 ---
-
+<!--more-->
 1.添加项目组
   {% codeblock %}   #groupadd poject{% endcodeblock %}
 2.添加获得project支持的用户
