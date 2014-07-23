@@ -4,10 +4,10 @@
   <title><![CDATA[Category: Linux | My Octopress Blog]]></title>
   <link href="http://freealvin.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2014-07-23T20:02:28+08:00</updated>
+  <updated>2014-07-23T23:18:05+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Alvin]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -542,7 +542,10 @@ C编译器会自动把相邻的多个字符串接在一起，以上两个字符�
     <link href="http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan/"/>
     <updated>2013-08-20T06:17:00+08:00</updated>
     <id>http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-[?]-ge-yong-hu-zu-de-yong-hu-yong-you-[?]-ge-mu-lu-de-kai-fa-quan</id>
-    <content type="html"><![CDATA[<p>1.添加项目组
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>1.添加项目组
   <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#groupadd poject</span></code></pre></td></tr></table></div></figure></notextile></div>
 2.添加获得project支持的用户

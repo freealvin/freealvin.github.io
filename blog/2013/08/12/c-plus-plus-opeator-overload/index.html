@@ -1,15 +1,11 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
   <title>C++ Operator Overloading - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <meta name="author" content="Alvin">
 
   
-  <meta name="description" content="In C++ the overloading principle applies not only to functions, but to operators too. That is, of operators can be extended to work not just with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,59 +15,95 @@
 
   
   <link rel="canonical" href="http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
 
   
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44223318-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
-  
-    <h2>A blogging framework for hackers.</h2>
-  
-</hgroup>
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">My Octopress Blog</a>
+        </div>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:freealvin.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:freealvin.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="My Octopress Blog" />
+    <meta itemprop="description" content="" />
+    <meta itemprop="url" content="http://freealvin.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
     
-      <h1 class="entry-title">C++ Operator Overloading</h1>
-    
-    
-      <p class="meta">
+      <p class="meta text-muted text-uppercase">
         
 
 
@@ -81,17 +113,27 @@
 
 
 
-  
 
 
-<time datetime="2013-08-12T16:42:00+08:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2013</time>
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-12T16:42:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">Aug 12<sup>th</sup>, 2013</time>
+        
+           | <a href="#disqus_thread" itemprop="discussionUrl"
+             data-disqus-identifier="http://freealvin.github.io">Comments</a>
         
       </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        C++ Operator Overloading
+        
+    </h1>
     
   </header>
 
 
-<div class="entry-content"><p>In C++ the overloading principle applies not only to functions, but to operators too. That is, of operators can be extended to work not just with built-in types but also classes. A programmer can provide his or her own operator to a class by overloading the built-in operator to perform some specific computation when the operator is used on objects of that class.</p>
+<div class="entry-content clearfix" itemprop="articleBody"><p>In C++ the overloading principle applies not only to functions, but to operators too. That is, of operators can be extended to work not just with built-in types but also classes. A programmer can provide his or her own operator to a class by overloading the built-in operator to perform some specific computation when the operator is used on objects of that class.</p>
 
 <!--more-->
 
@@ -109,28 +151,30 @@
 </div>
 
 
-  <footer>
-    <p class="meta">
-      
+      <footer>
+        <p class="meta text-muted">
+          
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Alvin</span></span>
 
-      
-
-
+          
 
 
 
 
 
 
-  
 
 
-<time datetime="2013-08-12T16:42:00+08:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2013</time>
-      
 
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-12T16:42:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">Aug 12<sup>th</sup>, 2013</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
     <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>
@@ -138,9 +182,9 @@
 </span>
 
 
-    </p>
-    
-      <div class="sharing">
+        </p>
+        
+          <div class="sharing">
   
   <a href="//twitter.com/share" class="twitter-share-button" data-url="http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload/" data-via="" data-counturl="http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload/" >Tweet</a>
   
@@ -148,66 +192,110 @@
   
 </div>
 
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2013/08/10/determine-if-two-binary-trees-are-equal/" title="Previous Post: Determine If Two Binary Trees Are Equal">&laquo; Determine If Two Binary Trees Are Equal</a></li>
+            
+            
+            <li class="next"><a href="/blog/2013/08/13/store-the-return-value-in-a-refrence/" title="Next Post: Store the Return Value In a Refrence">Store the Return Value In a Refrence &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/08/10/determine-if-two-binary-trees-are-equal/" title="Previous Post: Determine If Two Binary Trees Are Equal">&laquo; Determine If Two Binary Trees Are Equal</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/08/13/store-the-return-value-in-a-refrence/" title="Next Post: Store the Return Value In a Refrence">Store the Return Value In a Refrence &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+      </section>
+    
+  </div>
 
-<aside class="sidebar">
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
+  <aside class="sidebar col-md-3">
     
-      <li class="post">
-        <a href="/blog/2014/07/16/nihao-my-friends/">Nihao My Friends</a>
-      </li>
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
     
-      <li class="post">
-        <a href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/">C语言的缩进和空白</a>
-      </li>
+    <a class="list-group-item " href="/blog/2014/07/16/nihao-my-friends/">Nihao My Friends</a>
     
-      <li class="post">
-        <a href="/blog/2013/12/02/at-and-thui-bian-yu-fa-2/">AT&amp;T汇编语法2</a>
-      </li>
+    <a class="list-group-item " href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/">C语言的缩进和空白</a>
     
-      <li class="post">
-        <a href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/">AT&amp;T汇编语言学习1</a>
-      </li>
+    <a class="list-group-item " href="/blog/2013/12/02/at-and-thui-bian-yu-fa-2/">AT&amp;T汇编语法2</a>
     
-      <li class="post">
-        <a href="/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/">Linux中的正则表达式</a>
-      </li>
+    <a class="list-group-item " href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/">AT&amp;T汇编语言学习1</a>
     
-  </ul>
+    <a class="list-group-item " href="/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/">Linux中的正则表达式</a>
+    
+  </div>
 </section>
 
 
 
 
 
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/algorithm/'>algorithm (2)</a></li>
+<li class='category'><a href='/blog/categories/c/'>c (4)</a></li>
+<li class='category'><a href='/blog/categories/c-/'>c++ (7)</a></li>
+<li class='category'><a href='/blog/categories/centos/'>centos (3)</a></li>
+<li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (6)</a></li>
+<li class='category'><a href='/blog/categories/notes/'>notes (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
+<li class='category'><a href='/blog/categories/python/'>python (3)</a></li>
+<li class='category'><a href='/blog/categories/ruby/'>ruby (1)</a></li>
+
+  </ul>
+</section>
+
+    
+  </aside>
   
-</aside>
+</div>
 
 
+
+        </div>
+      </div>
     </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Your Name -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Alvin<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
 </p>
 
+</div>
 </footer>
-  
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'freealvin';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload/';
+        var disqus_url = 'http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
@@ -226,8 +314,9 @@
   </script>
 
 
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
 
 
-
-</body>
+  </body>
 </html>
