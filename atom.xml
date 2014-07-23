@@ -4,7 +4,7 @@
   <title><![CDATA[Babyachievement]]></title>
   <link href="http://freealvin.github.io/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2014-07-23T23:23:16+08:00</updated>
+  <updated>2014-07-23T23:57:36+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
@@ -35,40 +35,28 @@
 <h1>一般编码缩进规则</h1>
 
 
-<h2>1.字if、while、for与其后的控制表达式的(括号之间插入一个空格分隔，但括号内的表达式应紧贴括号</h2>
-
-
-<p>例如
-<code> while (1) </code></p>
-
-<h2>2.双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格</h2>
-
-
-<p>例如：
+<p>1.字if、while、for与其后的控制表达式的(括号之间插入一个空格分隔，但括号内的表达式应紧贴括号
+例如
+<code> while (1) </code>
+2.双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格
+例如：
 <code>i␣=␣i␣+␣1、++i、!(i␣&lt;␣1)、-x、&amp;a[1]等)</code></p>
 
-<h2>3.后缀运算符和操作数之间也不加空格</h2>
-
-
-<p>例如:
+<p>3.后缀运算符和操作数之间也不加空格
+例如:
 取结构体成员<code>s.a</code>、函数调用<code>foo(arg1)</code>、取数组成员<code>a[i]</code></p>
 
-<h2>4. ,号和;号之后要加空格，这是英文的书写习惯</h2>
+<ol>
+<li><p>,号和;号之后要加空格，这是英文的书写习惯
+例如：
+<code>for␣(i␣=␣1;␣i␣&lt;␣10;␣i++)、foo(arg1,␣arg2)</code></p></li>
+<li><p>有时候为了突出优先级也可以写得更紧凑一些
+例如：
+<code>for␣(i=1;␣i&lt;10;␣i++)</code>、<code>distance␣=␣sqrt(x<em>x␣+␣y</em>y)</code>等。但是省略的空格一定不要误导了读代码的人，例如<code>a||b␣&amp;&amp;␣c</code>很容易让人理解成错误的优先级.</p></li>
+<li><p>接近或大于80个字符的较长语句要折行写
+由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐，例如：</p></li>
+</ol>
 
-
-<p>例如：
-<code>for␣(i␣=␣1;␣i␣&lt;␣10;␣i++)、foo(arg1,␣arg2)</code></p>
-
-<h2>5. 有时候为了突出优先级也可以写得更紧凑一些</h2>
-
-
-<p>例如：
-<code>for␣(i=1;␣i&lt;10;␣i++)</code>、<code>distance␣=␣sqrt(x<em>x␣+␣y</em>y)</code>等。但是省略的空格一定不要误导了读代码的人，例如<code>a||b␣&amp;&amp;␣c</code>很容易让人理解成错误的优先级.</p>
-
-<h2>6. 接近或大于80个字符的较长语句要折行写</h2>
-
-
-<p>由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐，例如：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -86,12 +74,11 @@
 </span><span class='line'>    a[i-1]␣+␣b[i-1]␣+␣c[i-1])</span></code></pre></td></tr></table></div></figure>
 
 
+<ol>
+<li>较长的字符串可以断成多个字符串然后分行书写
+例如:</li>
+</ol>
 
-
-<h2>7. 较长的字符串可以断成多个字符串然后分行书写</h2>
-
-
-<p>例如:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -101,25 +88,23 @@
 
 <p>C编译器会自动把相邻的多个字符串接在一起，以上两个字符串相当于一个字符串&#8221;This is such a long sentence that it cannot be held within a line\n&#8221;。</p>
 
-<h2>8. 在变量定义语句中用Tab字符，使变量名对齐</h2>
+<ol>
+<li>在变量定义语句中用Tab字符，使变量名对齐
+有的人喜欢在变量定义语句中用Tab字符，使变量名对齐，这样看起来很美观。</li>
+</ol>
 
-
-<p>有的人喜欢在变量定义语句中用Tab字符，使变量名对齐，这样看起来很美观。</p>
 
 <h1>内核编码缩进规则</h1>
 
 
+<p>1.要用缩进体现出语句块的层次关系
+要用缩进体现出语句块的层次关系，使用Tab字符缩进，不能用空格代替Tab。在标准的字符终端上一个Tab看起来是8个空格的宽度，如果你的文本编辑器可以设置Tab的显示宽度是几个空格，建议也设成8，这样大的缩进使代码看起来非常清晰。如果有的行用空格做缩进，有的行用Tab做缩进，甚至空格和Tab混用，那么一旦改变了文本编辑器的Tab显示宽度就会看起来非常混乱，所以内核代码风格规定只能用Tab做缩进，不能用空格代替Tab。</p>
 
+<ol>
+<li>语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行
+if/else、while、do/while、for、switch这些可以带语句块的语句，语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行。例如应该这样写：</li>
+</ol>
 
-<h2>1.要用缩进体现出语句块的层次关系</h2>
-
-
-<p>要用缩进体现出语句块的层次关系，使用Tab字符缩进，不能用空格代替Tab。在标准的字符终端上一个Tab看起来是8个空格的宽度，如果你的文本编辑器可以设置Tab的显示宽度是几个空格，建议也设成8，这样大的缩进使代码看起来非常清晰。如果有的行用空格做缩进，有的行用Tab做缩进，甚至空格和Tab混用，那么一旦改变了文本编辑器的Tab显示宽度就会看起来非常混乱，所以内核代码风格规定只能用Tab做缩进，不能用空格代替Tab。</p>
-
-<h2>2. 语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行</h2>
-
-
-<p>if/else、while、do/while、for、switch这些可以带语句块的语句，语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行。例如应该这样写：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -155,9 +140,9 @@
 
 <p>内核的写法和[K&amp;R]一致，好处是不必占太多行，使得一屏能显示更多代码。这两种写法用得都很广泛，只要在同一个项目中能保持统一就可以了。</p>
 
-<h2>3. 函数定义的{和}单独占一行，这一点和语句块的规定不同</h2>
-
-
+<ol>
+<li>函数定义的{和}单独占一行，这一点和语句块的规定不同</li>
+</ol>
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -170,12 +155,11 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
+<ol>
+<li>switch和语句块里的case、default对齐写
+switch和语句块里的case、default对齐写，也就是说语句块里的case、default标号相对于switch不往里缩进，但标号下的语句要往里缩进。例如：</li>
+</ol>
 
-
-<h2>4. switch和语句块里的case、default对齐写</h2>
-
-
-<p>switch和语句块里的case、default对齐写，也就是说语句块里的case、default标号相对于switch不往里缩进，但标号下的语句要往里缩进。例如：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -197,10 +181,11 @@
 
 <p>用于goto语句的自定义标号应该顶头写不缩进，而不管标号下的语句缩进到第几层。</p>
 
-<h2>5. 代码中每个逻辑段落之间应该用一个空行分隔开</h2>
+<ol>
+<li>代码中每个逻辑段落之间应该用一个空行分隔开
+例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行，例如：</li>
+</ol>
 
-
-<p>例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行，例如：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -244,12 +229,11 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
+<ol>
+<li>一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。
+一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。这条规定不是严格要求，通常把变量定义组成一组，后面加空行，return语句之前加空行，例如：</li>
+</ol>
 
-
-<h2>6. 一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。</h2>
-
-
-<p>一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。这条规定不是严格要求，通常把变量定义组成一组，后面加空行，return语句之前加空行，例如：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1161,7 +1145,7 @@ boost::shared_ptr&lt;> is example.</p>
 
 
 <p>In general, any time you need to write your own custom copy constructor, you also need to write a custom assignment operator.
-File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
+File /home/Alvin/git_projects/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
 ]]></content>
   </entry>
   
@@ -1173,7 +1157,7 @@ File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.c
     <content type="html"><![CDATA[<pre><code>自定义一个栈类，使用一个栈对象初始化另一个对象，自然会用到拷贝构造函数，代码如下
 </code></pre>
 
-<p>File /home/Alvin/octopress/source/downloads/code/copy_constructor.cpp could not be found
+<p>File /home/Alvin/git_projects/octopress/source/downloads/code/copy_constructor.cpp could not be found
 以上代码在执行的时候会出现：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1293,7 +1277,7 @@ File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.c
 <p>后来查询了资料后，发现是重载&lt;&lt;运算符时，形参的类型导致的。形参f的类型是Fraction &amp;， 而我调用cout&lt;&lt;f1+f2时， f1+f2会调用 f1.operator+(f2)并返回一个临时结果，而错误就出现在这个临时结果上，临时结果是不能改变的，而重载&lt;&lt;时参数的是Fraction &amp;，而不是const Fraction &amp;，而在C++中是不允许把temporary绑定到non-const reference上的，所以编译器会出现以上的错误。</p>
 
 <p>这个练习的所有代码:
-File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
+File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
 ]]></content>
   </entry>
   
@@ -1310,7 +1294,7 @@ File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could n
 <h2>An example of operator overloading</h2>
 
 
-<p>File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
+<p>File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
 
 <p>In order to allow operations like cin>>f, in above code we overloaded the &ldquo;>>&#8221;operator. And in order to access the private memebers in the implementations, we use keyworkd &#8220;friend&rdquo;.A important trick that can be seen in this general way of overloading IO is the returning reference for istream/ostream which is needed in order to use them in a recursive manner:</p>
 
@@ -1330,7 +1314,7 @@ File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could n
 <!--more-->
 
 
-<p>File /home/Alvin/octopress/source/downloads/code/binary_tree_equal.c could not be found</p>
+<p>File /home/Alvin/git_projects/octopress/source/downloads/code/binary_tree_equal.c could not be found</p>
 ]]></content>
   </entry>
   

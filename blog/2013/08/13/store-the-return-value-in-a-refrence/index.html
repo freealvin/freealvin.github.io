@@ -233,7 +233,7 @@
 <p>后来查询了资料后，发现是重载&lt;&lt;运算符时，形参的类型导致的。形参f的类型是Fraction &amp;， 而我调用cout&lt;&lt;f1+f2时， f1+f2会调用 f1.operator+(f2)并返回一个临时结果，而错误就出现在这个临时结果上，临时结果是不能改变的，而重载&lt;&lt;时参数的是Fraction &amp;，而不是const Fraction &amp;，而在C++中是不允许把temporary绑定到non-const reference上的，所以编译器会出现以上的错误。</p>
 
 <p>这个练习的所有代码:
-File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
+File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
 </div>
 
 

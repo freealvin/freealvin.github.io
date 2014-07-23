@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | Babyachievement]]></title>
   <link href="http://freealvin.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2014-07-23T23:23:16+08:00</updated>
+  <updated>2014-07-23T23:57:36+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
@@ -184,7 +184,7 @@ boost::shared_ptr&lt;> is example.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
 In general, any time you need to write your own custom copy constructor, you also need to write a custom assignment operator.
-File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
+File /home/Alvin/git_projects/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
 ]]></content>
   </entry>
   
@@ -196,7 +196,7 @@ File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.c
     <content type="html"><![CDATA[<pre><code>自定义一个栈类，使用一个栈对象初始化另一个对象，自然会用到拷贝构造函数，代码如下
 </code></pre>
 
-<p>File /home/Alvin/octopress/source/downloads/code/copy_constructor.cpp could not be found
+<p>File /home/Alvin/git_projects/octopress/source/downloads/code/copy_constructor.cpp could not be found
 以上代码在执行的时候会出现：
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;strong>&lt;em> glibc detected &lt;/em>&lt;/strong> ./a.out: double free or corruption (fasttop)</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -336,7 +336,7 @@ File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.c
 后来查询了资料后，发现是重载&lt;&lt;运算符时，形参的类型导致的。形参f的类型是Fraction &amp;， 而我调用cout&lt;&lt;f1+f2时， f1+f2会调用 f1.operator+(f2)并返回一个临时结果，而错误就出现在这个临时结果上，临时结果是不能改变的，而重载&lt;&lt;时参数的是Fraction &amp;，而不是const Fraction &amp;，而在C++中是不允许把temporary绑定到non-const reference上的，所以编译器会出现以上的错误。</p>
 
 <p>这个练习的所有代码:
-File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
+File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
 ]]></content>
   </entry>
   
