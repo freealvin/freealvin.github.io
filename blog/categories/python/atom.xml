@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Python | My Octopress Blog]]></title>
+  <title><![CDATA[Category: Python | Babyachievement]]></title>
   <link href="http://freealvin.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2014-07-23T23:18:05+08:00</updated>
+  <updated>2014-07-23T23:23:16+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
