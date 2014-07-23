@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AT&amp;T汇编语法2 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="内联汇编 （一）内联汇编
+参考Linux中x86的内联汇编 1
+2
+3
+4
+5
+6
+7
+asm (assembler template : output operands (optional) : input operands (optional) : list of clobbered &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://freealvin.github.io/blog/2013/12/02/at-and-thui-bian-yu-fa-2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:freealvin.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AT&amp;T汇编语法2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-02T08:45:00+08:00" pubdate data-updated="true">Dec 2<sup>nd</sup>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><ol>
+<li>内联汇编</li>
+</ol>
+
+
+<!--more-->
+
+
+<p>（一）内联汇编
+参考<a href="http://www.ibm.com/developerworks/cn/linux/sdk/assemble/inline/">Linux中x86的内联汇编</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>asm (assembler template
+</span><span class='line'>    
+</span><span class='line'>    : output operands               (optional)
+</span><span class='line'>    : input operands                (optional)
+</span><span class='line'>    : list of clobbered registers   
+</span><span class='line'>    (optional)                
+</span><span class='line'>);</span></code></pre></td></tr></table></div></figure>
+
+
+<p> 汇编程序模板由汇编指令组成。输入操作数是充当指令输入操作数使用的 C 表达式。输出操作数是将对其执行汇编指令输出的 C 表达式。</p>
+
+<h2>内敛汇编的基本要素</h2>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>    int a=10, b;
+</span><span class='line'>        asm ("movl %1, %%eax;
+</span><span class='line'>            movl %%eax, %0;"
+</span><span class='line'>            :"=r"(b)  /* output */    
+</span><span class='line'>            :"r"(a)       /* input */
+</span><span class='line'>            :"%eax"); /* clobbered register */
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>·&#8221;b&#8221;是输出操作数,由%0引用,&ldquo;a&#8221;是输入操作数,由%1引用<br/>
+·&#8221;r&#8221;是操作数的约束,它指定将变量&#8221;a&#8221;和&#8221;b&#8221;存储在寄存器中。输出操作数约束应该带有一个约束修饰符&rdquo;=&ldquo;,表示它是输出操作数<br/>
+·要在&#8221;asm&#8221;内使用寄存器%eax,%eax的前面应该再加一个%,换句话说是%%eax，因为&#8221;asm&#8221;使用%0、%1等来表示变量。任何带有一个%的数都看做是输入/输出操作数,而不认为是寄存器<br/>
+·第三个冒号后的修饰寄存器%eax告诉将在asm中修改GCC%eax的值，这样GCC就不适用该寄存器存储任何其它的值<br/>
+·movl %1, %%eax将&#8221;a&#8221;的值移到%eax中, movl %%eax, %0将%eax的内容移到&#8221;b&#8221;中<br/>
+·因为&#8221;b&#8221;被指定成输出操作数,因此当&#8221;asm&#8221;的执行完成后，它将反映出更新的值。换句话说,对&#8221;asm&#8221;内&#8221;b&#8221;所做的更改将在&#8221;asm&#8221;外反映出来</p>
+
+<h2>汇编程序模板</h2>
+
+
+<p>汇编程序模板是一组插入到 C 程序中的汇编指令（可以是单个指令，也可以是一组指令）。每条指令都应该由双引号括起，或者整组指令应该由双引号括起。每条指令还应该用一个定界符结尾。有效的定界符为新行 (\n) 和分号 (;)。 &lsquo;\n&rsquo; 后可以跟一个 tab(\t) 作为格式化符号，增加 GCC 在汇编文件中生成的指令的可读性。 指令通过数 %0、%1 等来引用 C 表达式（指定为操作数）。</p>
+
+<p>如果希望确保编译器不会在 &ldquo;asm&rdquo; 内部优化指令，可以在 &ldquo;asm&rdquo; 后使用关键字 &ldquo;volatile&#8221;。如果程序必须与 ANSI C 兼容，则应该使用 <strong>asm</strong> 和 <strong>volatile</strong>，而不是 asm 和 volatile</p>
+
+<h2>操作数</h2>
+
+
+<p>C 表达式用作 &ldquo;asm&rdquo; 内的汇编指令操作数。在汇编指令通过对 C 程序的 C 表达式进行操作来执行有意义的作业的情况下，操作数是内联汇编的主要特性。</p>
+
+<p>每个操作数都由操作数约束字符串指定，后面跟用括弧括起的 C 表达式，例如：&#8221;constraint&#8221; (C expression)。操作数约束的主要功能是确定操作数的寻址方式。</p>
+
+<p>可以在输入和输出部分中同时使用多个操作数。每个操作数由逗号分隔开。</p>
+
+<p>在汇编程序模板内部，操作数由数字引用。如果总共有 n 个操作数（包括输入和输出），那么第一个输出操作数的编号为 0，逐项递增，最后那个输入操作数的编号为 n -1。总操作数的数目限制在 10，如果机器描述中任何指令模式中的最大操作数数目大于 10，则使用后者作为限制。</p>
+
+<h2>修饰寄存器列表</h2>
+
+
+<p>如果 &ldquo;asm&rdquo; 中的指令指的是硬件寄存器，可以告诉 GCC 我们将自己使用和修改它们。这样，GCC 就不会假设它装入到这些寄存器中的值是有效值。通常不需要将输入和输出寄存器列为 clobbered，因为 GCC 知道 &ldquo;asm&rdquo; 使用它们（因为它们被明确指定为约束）。不过，如果指令使用任何其它的寄存器，无论是明确的还是隐含的（寄存器不在输入约束列表中出现，也不在输出约束列表中出现），寄存器都必须被指定为修饰列表。修饰寄存器列在第三个冒号之后，其名称被指定为字符串。</p>
+
+<p>至于关键字，如果指令以某些不可预知且不明确的方式修改了内存，则可能将 &ldquo;memory&rdquo; 关键字添加到修饰寄存器列表中。这样就告诉 GCC 不要在不同指令之间将内存值高速缓存在寄存器中。</p>
+
+<h2>操作数约束</h2>
+
+
+<p>前面提到过，&#8221;asm&#8221; 中的每个操作数都应该由操作数约束字符串描述，后面跟用括弧括起的 C 表达式。操作数约束主要是确定指令中操作数的寻址方式。约束也可以指定：
+1. 是否允许操作数位于寄存器中，以及它可以包括在哪些种类的寄存器中
+2. 操作数是否可以是内存引用，以及在这种情况下使用哪些种类的地址
+3. 操作数是否可以是立即数
+约束还要求两个操作数匹配。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-02T08:45:00+08:00" pubdate data-updated="true">Dec 2<sup>nd</sup>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://freealvin.github.io/blog/2013/12/02/at-and-thui-bian-yu-fa-2/" data-via="" data-counturl="http://freealvin.github.io/blog/2013/12/02/at-and-thui-bian-yu-fa-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/" title="Previous Post: AT&amp;T汇编语言学习1">&laquo; AT&amp;T汇编语言学习1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/" title="Next Post: C语言的缩进和空白">C语言的缩进和空白 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/nihao-my-friends/">Nihao My Friends</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/">C语言的缩进和空白</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/at-and-thui-bian-yu-fa-2/">AT&amp;T汇编语法2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/">AT&amp;T汇编语言学习1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/">Linux中的正则表达式</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

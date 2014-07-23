@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows下Python安装模块]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/27/windowsxia-pythonan-zhuang-mo-kuai/"/>
+    <updated>2013-08-27T17:39:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/27/windowsxia-pythonan-zhuang-mo-kuai</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>以安装Beautifulsoup4为例：</p>
+
+<p>1.到网站上下载：<a href="http://www.crummy.com/software/BeautifulSoup/bs4/download/">http://www.crummy.com/software/BeautifulSoup/bs4/download/</a></p>
+
+<p>2.解压文件到C:\Python27</p>
+
+<p>3.cmd运行C:\Python27\BeautifulSoup>python setup.py install</p>
+
+<p>4.注意库名：creating build\lib\bs4</p>
+
+<p>5.测试一下是否能导入：</p>
+
+<blockquote><blockquote><blockquote><p>import bs4</p></blockquote></blockquote></blockquote>
+
+<p>如果不能导入，会提示：ImportError: No module named bs4</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Dict]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/22/python-dict/"/>
+    <updated>2013-08-22T13:07:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/22/python-dict</id>
+    <content type="html"><![CDATA[<h1>dict</h1>
+
+<p>字典的用法，dict的查找特别快捷。如果我们的项目经常用到搜索某些数据，最好用dict类型。</p>
+
+<!--more-->
+
+
+<h2>创建dict</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">dict1</span> <span class="o">=</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>或者
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">dict</span><span class="p">(</span><span class="n">sape</span><span class="o">=</span><span class="mi">4139</span><span class="p">,</span> <span class="n">guido</span><span class="o">=</span><span class="mi">4127</span><span class="p">,</span> <span class="n">jack</span><span class="o">=</span><span class="mi">4098</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sape</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span> <span class="mi">4139</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">jack</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span> <span class="mi">4098</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">guido</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span> <span class="mi">4127</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+
+<p>或者用dict构造函数创建dict变量
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">dict2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">key1</span><span class="p">,</span> <span class="n">value1</span><span class="p">),(</span><span class="n">key2</span><span class="p">,</span><span class="n">value2</span><span class="p">),</span><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>表达式创建
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">dict3</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+</span><span class='line'><span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">36</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+
+<h2>添加元素</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tel</span> <span class="o">=</span> <span class="p">{}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">dict1</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">tel</span><span class="p">[</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">guido</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;]</span> <span class="o">=</span> <span class="mi">4127</span>
+</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">jack</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;]</span> <span class="o">=</span> <span class="mi">4098</span>
+</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sape</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;]</span> <span class="o">=</span> <span class="mi">4193</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>获取元素值</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num1</span> <span class="o">=</span> <span class="n">tel</span><span class="p">[</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">sape</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+如果键不存在，tel[key]操作会出错，所以在获取元素之前，需要判断元素键是否存在
+判断方法？
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="n">tel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;snape&quot;</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">num1</span> <span class="o">=</span> <span class="n">tel</span><span class="p">[</span><span class="s">&quot;snape&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>或者
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="s">&quot;snape&quot;</span> <span class="ow">in</span> <span class="n">tel</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">num1</span> <span class="o">=</span> <span class="n">tel</span><span class="p">[</span><span class="s">&quot;snape&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>删除元素</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">guido</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">tel</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">jack</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>遍历</h2>
+
+
+<p>迭代器：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">knights</span> <span class="o">=</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gallahad</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">the</span> <span class="n">pure</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">robin</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">the</span> <span class="n">brave</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;}</span>
+</span><span class='line'><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">knights</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span>     <span class="k">print</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span>
+</span><span class='line'><span class="n">gallahad</span> <span class="n">the</span> <span class="n">pure</span>
+</span><span class='line'><span class="n">robin</span> <span class="n">the</span> <span class="n">brave</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python List]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/22/python-list/"/>
+    <updated>2013-08-22T12:18:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/22/python-list</id>
+    <content type="html"><![CDATA[<p>list是python里非常强大的数据类型</p>
+
+<!--more-->
+
+
+<h2>list 复制</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l1=[1,2,3]
+</span><span class='line'>l2=l1
+</span><span class='line'>l1[0]=10
+</span><span class='line'>print l1
+</span><span class='line'>[10, 2, 3]
+</span><span class='line'>print l2
+</span><span class='line'>[10, 2, 3]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+
+<h2>如何复制？</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l2=l1[:]
+</span><span class='line'>print l2
+</span><span class='line'>[10, 2, 3]
+</span><span class='line'>l1[0]=24
+</span><span class='line'>print l1
+</span><span class='line'>[24, 2, 3]
+</span><span class='line'>print l2
+</span><span class='line'>[10, 2, 3]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+发生了什么？ 第一种是<strong>指向</strong>，其实还是同一个内容。 第二种是<strong>复制</strong>。</p></blockquote></blockquote></blockquote>
+
+<h2>本质上的区别</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l2 = l1
+</span><span class='line'>l2 == l1 #值相同
+</span><span class='line'>True
+</span><span class='line'>l2 is l1 #指向同一个地方
+</span><span class='line'>True
+</span><span class='line'>l2 = l1[:]
+</span><span class='line'>l2 == l1 #值相同
+</span><span class='line'>True
+</span><span class='line'>l2 is l1 #并不是指向同一个地方
+</span><span class='line'>False</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+
+<h2>list如何添加元素？</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l1=[]
+</span><span class='line'>l1[0]=&ldquo;a&rdquo;
+</span><span class='line'>Traceback (most recent call last):
+</span><span class='line'>  File &ldquo;&lt;stdin>&rdquo;, line 1, in &lt;module>
+</span><span class='line'>IndexError: list assignment index out of range</span></code></pre></td></tr></table></div></figure></notextile></div>
+为什么？ 因为l1等于一个空列表，没有空间。 l1[0]是需要空间的。</p></blockquote></blockquote></blockquote>
+
+<p>我们该怎么让空list存储数据?</p>
+
+<p>list有一写默认的函数</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>l1.append(&ldquo;a&rdquo;)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>删除成员的方法</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l1.append(&ldquo;b&rdquo;)
+</span><span class='line'>l1.append(&ldquo;c&rdquo;)
+</span><span class='line'>l1.append(&ldquo;d&rdquo;)
+</span><span class='line'>l1.append(&ldquo;b&rdquo;)
+</span><span class='line'>print l1
+</span><span class='line'>[&ldquo;b&rdquo;, &ldquo;c&rdquo;, &ldquo;d&rdquo;,&ldquo;b&rdquo;]
+</span><span class='line'>l1.remove(&ldquo;b&rdquo;)
+</span><span class='line'>print l1
+</span><span class='line'>[&ldquo;c&rdquo;, &ldquo;d&rdquo;,&ldquo;b&rdquo;]
+</span><span class='line'>l1.remove(&ldquo;b&rdquo;)
+</span><span class='line'>print l1
+</span><span class='line'>[&ldquo;c&rdquo;,&ldquo;d&rdquo;]</span></code></pre></td></tr></table></div></figure></notextile></div>
+还有</p></blockquote></blockquote></blockquote>
+
+<p>l1.pop()
+再试一个删除的高级用法
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>print l1
+</span><span class='line'>[2, 3, 4, 5]
+</span><span class='line'>del l1[1:3]
+</span><span class='line'>print l1
+</span><span class='line'>[2, 5]</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+
+<h2>如何插入一个元素：</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;blockquote>&lt;p>l1.insert(1,67)
+</span><span class='line'>print l1
+</span><span class='line'>[2, 67, 5]</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

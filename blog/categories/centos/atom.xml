@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Centos | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/centos/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux中的正则表达式]]></title>
+    <link href="http://freealvin.github.io/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/"/>
+    <updated>2013-11-26T20:09:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi</id>
+    <content type="html"><![CDATA[<!--more about 正则表达式-->
+
+
+
+
+<h1>正则表达式</h1>
+
+
+<br />
+
+
+<pre><code>正则表达式完成字符串的匹配搜索，在Unix系统中，sed、grep、vi等工具都是用regexp规则。
+
+(1) 正则表达式的基本语法
+
+                   | 符号            | 含义                                       | 举例                 | 匹配                       |
+                   | --------------- | ----------------------------------------   | -------------------- | -------------------------- |
+                   | .               | 任何字符                                   | a..                  | a后面有两个字符的字符串    |
+                   | ?               | 修饰匹配次数，0次或1次                     | x?                   | 0个或1个x                  |
+                   | ^               | 匹配行首                                   | ^word                | 位于行首的word             |
+                   | +               | 重复一次或多次                             | y+                   | 一个--或多个连续的y          |
+                   | $               | 行尾                                       | x$                   | 以x结尾的行                |
+                   | *               | 重复0次或多次                              | w.*s                 | 以w开头、s结尾的任何字符串 |
+                   | [字符表]        | 字符表中的任一字符                         | [tT]                 | 小写字母t或大写字母T       |
+                   | [!字符表]       | 匹配不属于范围指定内的字符                 | [!a-z]               | 匹配不是小写字母的字符     |
+                   | [^字符表]       | 任一不在字符表中的字符                     | [^a-z A-Z]           | 任何非字母                 |
+                   | \               | 转义字符                                   | \\n                  | 匹配换行符                 |
+                   | \{min,max\}     | 前导正则表达式最少重复min次，最多重复max次 | x\{1,5\}             | 最少1个最多5个x            |
+                   | \(...\)         | 将圆括号中匹配的字符串存储到下一个寄存器中 | \(more\)and\1        | 匹配more and more          |
+                   | 表达式|1表达式2 | 匹配表达式1或表达式2                       | hello| happy         | 匹配hello或happy           |
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[把cs50.h添加到库中]]></title>
+    <link href="http://freealvin.github.io/blog/2013/10/11/ba-cs50-dot-htian-jia-dao-ku-zhong/"/>
+    <updated>2013-10-11T23:25:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/10/11/ba-cs50-dot-htian-jia-dao-ku-zhong</id>
+    <content type="html"><![CDATA[<p>  我最近在看网易公开课CS50，自我感觉非常喜欢David J. Malan的教学方法，非常羡慕和感慨哈佛学生的大学学习环境。也感谢网易为广大中国学生带来的福利。</p>
+
+<p>  以下是自己网上搜素总结的如何模仿搭建CS50中Malan使用的开发环境。</p>
+
+<p>  <!--more-->
+1. 参考<a href="https://manual.cs50.net/library/"> CS50 Manual</a>，选择适合自己的安装方法
+我的是Centos，所以执行以下命令，安装cs50库</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum -y install gcc
+</span><span class='line'>  wget http://mirror.cs50.net/library50/c/library50-c-5.zip
+</span><span class='line'>  unzip library50-c-5.zip
+</span><span class='line'>  rm -f library50-c-5.zip
+</span><span class='line'>  cd library50-c-5
+</span><span class='line'>  gcc -c -ggdb -std=c99 cs50.c -o cs50.o
+</span><span class='line'>  ar rcs libcs50.a cs50.o
+</span><span class='line'>  chmod 0644 cs50.h libcs50.a
+</span><span class='line'>  mkdir -p /usr/local/include
+</span><span class='line'>  chmod 0755 /usr/local/include
+</span><span class='line'>  mv -f cs50.h /usr/local/include
+</span><span class='line'>  mkdir -p /usr/local/lib
+</span><span class='line'>  chmod 0755 /usr/local/lib
+</span><span class='line'>  mv -f libcs50.a /usr/local/lib
+</span><span class='line'>  rm -rf library50-c-5</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<ol>
+<li> 安装完cs50库后, 修改make选项
+修改~/.bashrc文件
+在文件末尾添加
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;h1>configure gcc&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>export CC=gcc
+</span><span class='line'>export CFLAGS=&ldquo;-ggdb -std=c99 -Wall -Werror -Wformat=0&rdquo;
+</span><span class='line'>export LANG=C
+</span><span class='line'>export LDLIBS=&ldquo;-lcs50 -lm&rdquo;
+</span><span class='line'>alias gcc=&ldquo;gcc $CFLAGS&rdquo;</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+<li> 执行source ~/.bashrc使更改后的bashrc文件生效</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Test Chinese Fonts]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/10/test-chinese-fonts/"/>
+    <updated>2013-08-10T20:58:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/10/test-chinese-fonts</id>
+    <content type="html"><![CDATA[<p>解决CentOS中文显示问题：
+一：安装中文支持
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>yum install &ldquo;@Chinese Support&rdquo;&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>二：安装字体
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>yum install fonts-chinese.noarch&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>三：修改配置文件
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>vi /etc/sysconfig/i18n&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+将
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>LANG=&ldquo;en_US.UTF-8&rdquo;
+</span><span class='line'>SYSFONT=&ldquo;latarcyrheb-sun16&rdquo;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>修改为
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>LANG=&ldquo;zh_CN.GB18030&rdquo;
+</span><span class='line'>LANGUAGE=&ldquo;zh_CN.GB18030:zh_CN.GB2312:zh_CN&rdquo;
+</span><span class='line'>SUPPORTED=&ldquo;zh_CN.UTF-8:zh_CN:zh:en_US.UTF-8:en_US:en&rdquo;
+</span><span class='line'>SYSFONT=&ldquo;lat0-sun16&rdquo;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>四：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>cd /usr/share/fonts/&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>fc-cache   -fv&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

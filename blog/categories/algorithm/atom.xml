@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Algorithm | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/algorithm/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[递归与分治策略之整数划分]]></title>
+    <link href="http://freealvin.github.io/blog/2013/09/18/di-gui-yu-fen-zhi-ce-lue-zhi-zheng-shu-hua-fen/"/>
+    <updated>2013-09-18T10:49:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/09/18/di-gui-yu-fen-zhi-ce-lue-zhi-zheng-shu-hua-fen</id>
+    <content type="html"><![CDATA[<p>  将正整数划分为一些列正整数之和。在正整数n的所有不同的划分中，将最大加数n1不大于m的划分个数记为q(n, m).可以建立q(n, m)的递归关系。</p>
+
+<!--more-->
+
+
+<ol>
+<li> q(n,1) = 1, n>=1</li>
+<li> q(n,m) = q(n,n) m>=n</li>
+<li> q(n,n) = 1+q(n,n-1)</li>
+<li> q(n,m) = q(n, n-1)+q(n-m, m), n>m>1：正整数n的最大加数不大于m的划分可以分成最大加数为m的划分和最大加数小于等于m-1的划分。</li>
+</ol>
+
+
+<p>有递归关系可以写出递归函数。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="kt">int</span> <span class="nf">q</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="mi">1</span><span class="o">||</span><span class="n">m</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="mi">1</span><span class="p">)</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="o">||</span><span class="n">m</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">m</span><span class="p">)</span>         <span class="k">return</span> <span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>        <span class="k">return</span> <span class="mi">1</span><span class="o">+</span><span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="k">return</span> <span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Determine if Two Binary Trees Are Equal]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/10/determine-if-two-binary-trees-are-equal/"/>
+    <updated>2013-08-10T21:21:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/10/determine-if-two-binary-trees-are-equal</id>
+    <content type="html"><![CDATA[<p>What would be the efficient algorithm to find if two given binary trees are equal &ndash; in structure and content?</p>
+
+<!--more-->
+
+
+<p>File /home/Alvin/octopress/source/downloads/code/binary_tree_equal.c could not be found</p>
+]]></content>
+  </entry>
+  
+</feed>

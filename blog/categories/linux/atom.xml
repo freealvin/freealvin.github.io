@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C语言的缩进和空白]]></title>
+    <link href="http://freealvin.github.io/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/"/>
+    <updated>2013-12-02T21:31:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai</id>
+    <content type="html"><![CDATA[<p>C语言的缩进和空白使用原则</p>
+
+<!--more-->
+
+
+<h1>一般编码缩进规则</h1>
+
+
+<h2>1.字if、while、for与其后的控制表达式的(括号之间插入一个空格分隔，但括号内的表达式应紧贴括号</h2>
+
+
+<p>例如
+<code> while (1) </code></p>
+
+<h2>2.双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格</h2>
+
+
+<p>例如：
+<code>i␣=␣i␣+␣1、++i、!(i␣&lt;␣1)、-x、&amp;a[1]等)</code></p>
+
+<h2>3.后缀运算符和操作数之间也不加空格</h2>
+
+
+<p>例如:
+取结构体成员<code>s.a</code>、函数调用<code>foo(arg1)</code>、取数组成员<code>a[i]</code></p>
+
+<h2>4. ,号和;号之后要加空格，这是英文的书写习惯</h2>
+
+
+<p>例如：
+<code>for␣(i␣=␣1;␣i␣&lt;␣10;␣i++)、foo(arg1,␣arg2)</code></p>
+
+<h2>5. 有时候为了突出优先级也可以写得更紧凑一些</h2>
+
+
+<p>例如：
+<code>for␣(i=1;␣i&lt;10;␣i++)</code>、<code>distance␣=␣sqrt(x<em>x␣+␣y</em>y)</code>等。但是省略的空格一定不要误导了读代码的人，例如<code>a||b␣&amp;&amp;␣c</code>很容易让人理解成错误的优先级.</p>
+
+<h2>6. 接近或大于80个字符的较长语句要折行写</h2>
+
+
+<p>由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐，例如：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if␣(sqrt(x&lt;em>x␣+␣y&lt;/em>y)␣>␣5.0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&amp;&amp;␣x␣&lt;␣0.0
+</span><span class='line'>&amp;&amp;␣y␣&gt;␣0.0)
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>再比如：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>foo(sqrt(x&lt;em>x␣+␣y&lt;/em>y),&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>a[i-1]␣+␣b[i-1]␣+␣c[i-1])
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>7. 较长的字符串可以断成多个字符串然后分行书写</h2>
+
+
+<p>例如:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>printf(&ldquo;This is such a long sentence that &rdquo;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>   "it cannot be held within a line\n");
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+C编译器会自动把相邻的多个字符串接在一起，以上两个字符串相当于一个字符串"This is such a long sentence that it cannot be held within a line\n"。</p>
+
+<h2>8. 在变量定义语句中用Tab字符，使变量名对齐</h2>
+
+
+<p>有的人喜欢在变量定义语句中用Tab字符，使变量名对齐，这样看起来很美观。</p>
+
+<h1>内核编码缩进规则</h1>
+
+
+
+
+<h2>1.要用缩进体现出语句块的层次关系</h2>
+
+
+<p>要用缩进体现出语句块的层次关系，使用Tab字符缩进，不能用空格代替Tab。在标准的字符终端上一个Tab看起来是8个空格的宽度，如果你的文本编辑器可以设置Tab的显示宽度是几个空格，建议也设成8，这样大的缩进使代码看起来非常清晰。如果有的行用空格做缩进，有的行用Tab做缩进，甚至空格和Tab混用，那么一旦改变了文本编辑器的Tab显示宽度就会看起来非常混乱，所以内核代码风格规定只能用Tab做缩进，不能用空格代替Tab。</p>
+
+<h2>2. 语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行</h2>
+
+
+<p>if/else、while、do/while、for、switch这些可以带语句块的语句，语句块的{或}应该和关键字写在同一行，用空格隔开，而不是单独占一行。例如应该这样写：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if␣(&hellip;)␣{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>   →语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}␣else␣if␣(&hellip;)␣{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>   →语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>但很多人习惯这样写：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if␣(&hellip;)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}
+</span><span class='line'>else␣if␣(&hellip;)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+内核的写法和[K&amp;R]一致，好处是不必占太多行，使得一屏能显示更多代码。这两种写法用得都很广泛，只要在同一个项目中能保持统一就可以了。</p>
+
+<h2>3. 函数定义的{和}单独占一行，这一点和语句块的规定不同</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int␣foo(int␣a,␣int␣b)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>4. switch和语句块里的case、default对齐写</h2>
+
+
+<p>switch和语句块里的case、default对齐写，也就是说语句块里的case、default标号相对于switch不往里缩进，但标号下的语句要往里缩进。例如：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>→switch␣&copy;␣{
+</span><span class='line'>→case &lsquo;A&rsquo;:
+</span><span class='line'>→       →语句列表
+</span><span class='line'>→case &lsquo;B&rsquo;:
+</span><span class='line'>→       →语句列表
+</span><span class='line'>→default:
+</span><span class='line'>→       →语句列表
+</span><span class='line'>→}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>用于goto语句的自定义标号应该顶头写不缩进，而不管标号下的语句缩进到第几层。</p>
+
+<h2>5. 代码中每个逻辑段落之间应该用一个空行分隔开</h2>
+
+
+<p>例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行，例如：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>include &lt;stdio.h>&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>include &lt;stdlib.h>&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int g;
+</span><span class='line'>double h;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo(void)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int bar(int a)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int main(void)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→语句列表
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>6. 一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。</h2>
+
+
+<p>一个函数的语句列表如果很长，也可以根据相关性分成若干组，用空行分隔。这条规定不是严格要求，通常把变量定义组成一组，后面加空行，return语句之前加空行，例如：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int main(void)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>→int    →a, b;
+</span><span class='line'>→double →c;
+</span><span class='line'>
+</span><span class='line'>→语句组1
+</span><span class='line'>
+</span><span class='line'>→语句组2
+</span><span class='line'>
+</span><span class='line'> →return 0;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AT&amp;T汇编语法2]]></title>
+    <link href="http://freealvin.github.io/blog/2013/12/02/at-and-thui-bian-yu-fa-2/"/>
+    <updated>2013-12-02T08:45:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/12/02/at-and-thui-bian-yu-fa-2</id>
+    <content type="html"><![CDATA[<ol>
+<li>内联汇编</li>
+</ol>
+
+
+<!--more-->
+
+
+<p>（一）内联汇编
+参考<a href="http://www.ibm.com/developerworks/cn/linux/sdk/assemble/inline/">Linux中x86的内联汇编</a>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>asm (assembler template&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>: output operands               (optional)
+</span><span class='line'>: input operands                (optional)
+</span><span class='line'>: list of clobbered registers   
+</span><span class='line'>(optional)                
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>);</span></code></pre></td></tr></table></div></figure></notextile></div>
+ 汇编程序模板由汇编指令组成。输入操作数是充当指令输入操作数使用的 C 表达式。输出操作数是将对其执行汇编指令输出的 C 表达式。</p>
+
+<h2>内敛汇编的基本要素</h2>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>int a=10, b;
+</span><span class='line'>    asm ("movl %1, %%eax;
+</span><span class='line'>        movl %%eax, %0;"
+</span><span class='line'>        :"=r"(b)  /* output */    
+</span><span class='line'>        :"r"(a)       /* input */
+</span><span class='line'>        :"%eax"); /* clobbered register */
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+·"b"是输出操作数,由%0引用,&ldquo;a"是输入操作数,由%1引用<br/>
+·"r"是操作数的约束,它指定将变量"a"和"b"存储在寄存器中。输出操作数约束应该带有一个约束修饰符&rdquo;=&ldquo;,表示它是输出操作数<br/>
+·要在"asm"内使用寄存器%eax,%eax的前面应该再加一个%,换句话说是%%eax，因为"asm"使用%0、%1等来表示变量。任何带有一个%的数都看做是输入/输出操作数,而不认为是寄存器<br/>
+·第三个冒号后的修饰寄存器%eax告诉将在asm中修改GCC%eax的值，这样GCC就不适用该寄存器存储任何其它的值<br/>
+·movl %1, %%eax将"a"的值移到%eax中, movl %%eax, %0将%eax的内容移到"b"中<br/>
+·因为"b"被指定成输出操作数,因此当"asm"的执行完成后，它将反映出更新的值。换句话说,对"asm"内"b"所做的更改将在"asm"外反映出来</p>
+
+<h2>汇编程序模板</h2>
+
+
+<p>汇编程序模板是一组插入到 C 程序中的汇编指令（可以是单个指令，也可以是一组指令）。每条指令都应该由双引号括起，或者整组指令应该由双引号括起。每条指令还应该用一个定界符结尾。有效的定界符为新行 (\n) 和分号 (;)。 &lsquo;\n&rsquo; 后可以跟一个 tab(\t) 作为格式化符号，增加 GCC 在汇编文件中生成的指令的可读性。 指令通过数 %0、%1 等来引用 C 表达式（指定为操作数）。</p>
+
+<p>如果希望确保编译器不会在 &ldquo;asm&rdquo; 内部优化指令，可以在 &ldquo;asm&rdquo; 后使用关键字 &ldquo;volatile"。如果程序必须与 ANSI C 兼容，则应该使用 <strong>asm</strong> 和 <strong>volatile</strong>，而不是 asm 和 volatile</p>
+
+<h2>操作数</h2>
+
+
+<p>C 表达式用作 &ldquo;asm&rdquo; 内的汇编指令操作数。在汇编指令通过对 C 程序的 C 表达式进行操作来执行有意义的作业的情况下，操作数是内联汇编的主要特性。</p>
+
+<p>每个操作数都由操作数约束字符串指定，后面跟用括弧括起的 C 表达式，例如："constraint" (C expression)。操作数约束的主要功能是确定操作数的寻址方式。</p>
+
+<p>可以在输入和输出部分中同时使用多个操作数。每个操作数由逗号分隔开。</p>
+
+<p>在汇编程序模板内部，操作数由数字引用。如果总共有 n 个操作数（包括输入和输出），那么第一个输出操作数的编号为 0，逐项递增，最后那个输入操作数的编号为 n -1。总操作数的数目限制在 10，如果机器描述中任何指令模式中的最大操作数数目大于 10，则使用后者作为限制。</p>
+
+<h2>修饰寄存器列表</h2>
+
+
+<p>如果 &ldquo;asm&rdquo; 中的指令指的是硬件寄存器，可以告诉 GCC 我们将自己使用和修改它们。这样，GCC 就不会假设它装入到这些寄存器中的值是有效值。通常不需要将输入和输出寄存器列为 clobbered，因为 GCC 知道 &ldquo;asm&rdquo; 使用它们（因为它们被明确指定为约束）。不过，如果指令使用任何其它的寄存器，无论是明确的还是隐含的（寄存器不在输入约束列表中出现，也不在输出约束列表中出现），寄存器都必须被指定为修饰列表。修饰寄存器列在第三个冒号之后，其名称被指定为字符串。</p>
+
+<p>至于关键字，如果指令以某些不可预知且不明确的方式修改了内存，则可能将 &ldquo;memory&rdquo; 关键字添加到修饰寄存器列表中。这样就告诉 GCC 不要在不同指令之间将内存值高速缓存在寄存器中。</p>
+
+<h2>操作数约束</h2>
+
+
+<p>前面提到过，"asm" 中的每个操作数都应该由操作数约束字符串描述，后面跟用括弧括起的 C 表达式。操作数约束主要是确定指令中操作数的寻址方式。约束也可以指定：
+1. 是否允许操作数位于寄存器中，以及它可以包括在哪些种类的寄存器中
+2. 操作数是否可以是内存引用，以及在这种情况下使用哪些种类的地址
+3. 操作数是否可以是立即数
+约束还要求两个操作数匹配。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux中的正则表达式]]></title>
+    <link href="http://freealvin.github.io/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/"/>
+    <updated>2013-11-26T20:09:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi</id>
+    <content type="html"><![CDATA[<!--more about 正则表达式-->
+
+
+
+
+<h1>正则表达式</h1>
+
+
+<br />
+
+
+<pre><code>正则表达式完成字符串的匹配搜索，在Unix系统中，sed、grep、vi等工具都是用regexp规则。
+
+(1) 正则表达式的基本语法
+
+                   | 符号            | 含义                                       | 举例                 | 匹配                       |
+                   | --------------- | ----------------------------------------   | -------------------- | -------------------------- |
+                   | .               | 任何字符                                   | a..                  | a后面有两个字符的字符串    |
+                   | ?               | 修饰匹配次数，0次或1次                     | x?                   | 0个或1个x                  |
+                   | ^               | 匹配行首                                   | ^word                | 位于行首的word             |
+                   | +               | 重复一次或多次                             | y+                   | 一个--或多个连续的y          |
+                   | $               | 行尾                                       | x$                   | 以x结尾的行                |
+                   | *               | 重复0次或多次                              | w.*s                 | 以w开头、s结尾的任何字符串 |
+                   | [字符表]        | 字符表中的任一字符                         | [tT]                 | 小写字母t或大写字母T       |
+                   | [!字符表]       | 匹配不属于范围指定内的字符                 | [!a-z]               | 匹配不是小写字母的字符     |
+                   | [^字符表]       | 任一不在字符表中的字符                     | [^a-z A-Z]           | 任何非字母                 |
+                   | \               | 转义字符                                   | \\n                  | 匹配换行符                 |
+                   | \{min,max\}     | 前导正则表达式最少重复min次，最多重复max次 | x\{1,5\}             | 最少1个最多5个x            |
+                   | \(...\)         | 将圆括号中匹配的字符串存储到下一个寄存器中 | \(more\)and\1        | 匹配more and more          |
+                   | 表达式|1表达式2 | 匹配表达式1或表达式2                       | hello| happy         | 匹配hello或happy           |
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[把cs50.h添加到库中]]></title>
+    <link href="http://freealvin.github.io/blog/2013/10/11/ba-cs50-dot-htian-jia-dao-ku-zhong/"/>
+    <updated>2013-10-11T23:25:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/10/11/ba-cs50-dot-htian-jia-dao-ku-zhong</id>
+    <content type="html"><![CDATA[<p>  我最近在看网易公开课CS50，自我感觉非常喜欢David J. Malan的教学方法，非常羡慕和感慨哈佛学生的大学学习环境。也感谢网易为广大中国学生带来的福利。</p>
+
+<p>  以下是自己网上搜素总结的如何模仿搭建CS50中Malan使用的开发环境。</p>
+
+<p>  <!--more-->
+1. 参考<a href="https://manual.cs50.net/library/"> CS50 Manual</a>，选择适合自己的安装方法
+我的是Centos，所以执行以下命令，安装cs50库</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum -y install gcc
+</span><span class='line'>  wget http://mirror.cs50.net/library50/c/library50-c-5.zip
+</span><span class='line'>  unzip library50-c-5.zip
+</span><span class='line'>  rm -f library50-c-5.zip
+</span><span class='line'>  cd library50-c-5
+</span><span class='line'>  gcc -c -ggdb -std=c99 cs50.c -o cs50.o
+</span><span class='line'>  ar rcs libcs50.a cs50.o
+</span><span class='line'>  chmod 0644 cs50.h libcs50.a
+</span><span class='line'>  mkdir -p /usr/local/include
+</span><span class='line'>  chmod 0755 /usr/local/include
+</span><span class='line'>  mv -f cs50.h /usr/local/include
+</span><span class='line'>  mkdir -p /usr/local/lib
+</span><span class='line'>  chmod 0755 /usr/local/lib
+</span><span class='line'>  mv -f libcs50.a /usr/local/lib
+</span><span class='line'>  rm -rf library50-c-5</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<ol>
+<li> 安装完cs50库后, 修改make选项
+修改~/.bashrc文件
+在文件末尾添加
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;h1>configure gcc&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>export CC=gcc
+</span><span class='line'>export CFLAGS=&ldquo;-ggdb -std=c99 -Wall -Werror -Wformat=0&rdquo;
+</span><span class='line'>export LANG=C
+</span><span class='line'>export LDLIBS=&ldquo;-lcs50 -lm&rdquo;
+</span><span class='line'>alias gcc=&ldquo;gcc $CFLAGS&rdquo;</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+<li> 执行source ~/.bashrc使更改后的bashrc文件生效</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何使同一个用户组的用户拥有一个目录的开发权]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan/"/>
+    <updated>2013-08-20T06:17:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-[?]-ge-yong-hu-zu-de-yong-hu-yong-you-[?]-ge-mu-lu-de-kai-fa-quan</id>
+    <content type="html"><![CDATA[<p>1.添加项目组
+  <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#groupadd poject</span></code></pre></td></tr></table></div></figure></notextile></div>
+2.添加获得project支持的用户
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code> #useradd -G project alex
+</span><span class='line'> #useradd -G project arod
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+3.创建目录</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#mkdir /srv/ahome</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<p>4.把目录的用户组改为project</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#chgrp project /srv/ahome</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<p>5.更改目录的权限，是project用户组可以rwx,其他人没有任何权限
+  <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#chmod 770 /srv/ahome</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>6.切换到alex,并在/srv/ahome下创建一个文件，查看文件的权限</p>
+
+<pre><code> <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#su - alex
+</span><span class='line'> $touch abcd
+</span><span class='line'> $ll
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<pre><code> 会发现abcd 的拥有者、group均为alex,而arod虽然对文件夹有rwx权限，但对于刚刚创建的文件可以删除却不能编辑
+</code></pre>
+
+<p>7.这就要用到SGID
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$exit&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code> #chomd 2770 /srv/ahome
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<pre><code> 这样执行者在执行的过程中会自动获得该程序用户组的支持 
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

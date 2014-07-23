@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C++ | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[递归与分治策略之整数划分]]></title>
+    <link href="http://freealvin.github.io/blog/2013/09/18/di-gui-yu-fen-zhi-ce-lue-zhi-zheng-shu-hua-fen/"/>
+    <updated>2013-09-18T10:49:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/09/18/di-gui-yu-fen-zhi-ce-lue-zhi-zheng-shu-hua-fen</id>
+    <content type="html"><![CDATA[<p>  将正整数划分为一些列正整数之和。在正整数n的所有不同的划分中，将最大加数n1不大于m的划分个数记为q(n, m).可以建立q(n, m)的递归关系。</p>
+
+<!--more-->
+
+
+<ol>
+<li> q(n,1) = 1, n>=1</li>
+<li> q(n,m) = q(n,n) m>=n</li>
+<li> q(n,n) = 1+q(n,n-1)</li>
+<li> q(n,m) = q(n, n-1)+q(n-m, m), n>m>1：正整数n的最大加数不大于m的划分可以分成最大加数为m的划分和最大加数小于等于m-1的划分。</li>
+</ol>
+
+
+<p>有递归关系可以写出递归函数。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="kt">int</span> <span class="nf">q</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="mi">1</span><span class="o">||</span><span class="n">m</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="mi">1</span><span class="p">)</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="o">||</span><span class="n">m</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">m</span><span class="p">)</span>         <span class="k">return</span> <span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>        <span class="k">return</span> <span class="mi">1</span><span class="o">+</span><span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="k">return</span> <span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">q</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[重载运算符++]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/23/zhong-zai-yun-suan-fu-plus-plus/"/>
+    <updated>2013-08-23T13:19:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/23/zhong-zai-yun-suan-fu-plus-plus</id>
+    <content type="html"><![CDATA[<p>自定义重载运算符++时，为了区分前++和后++，在重载后++时添加哑参数。</p>
+
+<!--more-->
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">F</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="k">operator</span><span class="o">++</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">F</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">){</span><span class="c1">//此处使用到哑元</span>
+</span><span class='line'>    <span class="n">F</span> <span class="n">old</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>由上可知，自定义重载的++运算符，前++往往比后++效率高，所以一般选择使用前++</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[拷贝构造函数与赋值运算符]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu/"/>
+    <updated>2013-08-18T06:55:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu</id>
+    <content type="html"><![CDATA[<p>总结一下：拷贝构造函数会逐一复制成员，所以如果对象里有指针，那么默认拷贝构造函数只会复制指针的内容，而不会为新对象分配相应的动态空间（存储指针所指向的内容），这样导致了两个对象的数据成员指向同一个地址，在释放空间时，导致同一块空间被释放两次这样的错误。同样赋值也会逐一复制成员，有指针成员也会导致析构这样释放空间的操作时出现错误，所以一般需要重写拷贝构造函数的类，也需要重写“=”赋值运算符。</p>
+
+<!--more-->
+
+
+
+
+<h2>When do I need to write a copy constructor?</h2>
+
+
+<p>First, you should understand that if you do not declare a copy constructor, the compiler gives you one implicitly. The implicit copy constructor does a member-wise copy of the source object.
+For example, given the class:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class MyClass {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  int x;
+</span><span class='line'>  char c;
+</span><span class='line'>  std::string s;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  };&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>the compiler-provided copy constructor is exactly equivalent to:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyClass::MyClass( const MyClass&amp; other ) :&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code> x( other.x ), c( other.c ), s( other.s )
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  {}</span></code></pre></td></tr></table></div></figure></notextile></div>
+In many cases, this is sufficient. However, there are certain circumstances where the member-wise copy version is not good enough. By far, the most common reason the default copy constructor is not sufficient is because the object contains raw pointers and you need to take a &ldquo;deep&rdquo; copy of the pointer. That is, you don&rsquo;t want to copy the pointer itself; rather you want to copy what the pointer
+points to. Why do you need to take &ldquo;deep&rdquo; copies? This is typically because the instance owns the pointer; that is, the instance is responsible for calling delete on the pointer at some point (probably the destructor). If two objects end up calling delete on the same non-NULL pointer, heap corruption results.</p>
+
+<p>Rarely you will come across a class that does not contain raw pointers yet the default copy constructor is not sufficient. An example of this is when you have a reference-counted object.
+boost::shared_ptr&lt;> is example.</p>
+
+<h2>When do I need to write an assignment operator?</h2>
+
+
+<p>First, you should understand that if you do not declare an assignment operator, the compiler gives you one implicitly. The implicit assignment operator does member-wise assignment of each data member from the source object. For example, using the class above, the compiler-provided assignment operator isexactly equivalent to:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyClass&amp; MyClass::operator=( const MyClass&amp; rhs ) {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  x = other.x;
+</span><span class='line'>  c = other.c;
+</span><span class='line'>  s = other.s;
+</span><span class='line'>  return *this;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+In general, any time you need to write your own custom copy constructor, you also need to write a custom assignment operator.
+File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[不得不重写的拷贝构造函数]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/17/bu-de-bu-zhong-xie-de-kao-bei-gou-zao-han-shu/"/>
+    <updated>2013-08-17T19:39:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/17/bu-de-bu-zhong-xie-de-kao-bei-gou-zao-han-shu</id>
+    <content type="html"><![CDATA[<pre><code>自定义一个栈类，使用一个栈对象初始化另一个对象，自然会用到拷贝构造函数，代码如下
+</code></pre>
+
+<p>File /home/Alvin/octopress/source/downloads/code/copy_constructor.cpp could not be found
+以上代码在执行的时候会出现：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;strong>&lt;em> glibc detected &lt;/em>&lt;/strong> ./a.out: double free or corruption (fasttop)</span></code></pre></td></tr></table></div></figure></notextile></div>
+也就是说，我们释放了两次动态分配的空间。为了解决这个问题，我们需要重写拷贝构造函数，在拷贝构造函数中重写申请新对象的动态空间。
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Stack(const Stack &amp;t):mem(new T[t.max]), len(t.len), max(t.max){}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Store the Return Value in a Refrence]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/13/store-the-return-value-in-a-refrence/"/>
+    <updated>2013-08-13T06:57:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/13/store-the-return-value-in-a-refrence</id>
+    <content type="html"><![CDATA[<p>  C++中，临时对象生存周期和它被创建时整个语句的生命长度相同，但是我们可以将临时变量赋值给const reference来延长它的生命长度。</p>
+
+<!--more-->
+
+
+<p>  我在学习C++中的运算符重载时没有注意到这一点，导致编译失败。我的代码是这样写的：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Fraction{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>int n;
+</span><span class='line'>int d;
+</span><span class='line'>……
+</span><span class='line'>
+</span><span class='line'>public:
+</span><span class='line'>    ……
+</span><span class='line'>    Fraction operator+( const Fraction &amp;f2)const;
+</span><span class='line'>    friend istream &amp;operator&gt;&gt;(istream &amp;in, Fraction &amp;f);
+</span><span class='line'>    friend ostream &amp;operator&lt;&lt;(ostream &amp;out,Fraction &amp;f);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Fraction Fraction::operator+( const Fraction &amp;f2)const
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Fraction res(n*f2.d + d*f2.n, d*f2.d);
+</span><span class='line'>return res;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>//重载>>，以便于输入
+</span><span class='line'>istream &amp;operator>>(istream &amp;in , Fraction &amp;f)
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>char c;
+</span><span class='line'>in&gt;&gt; f.n &gt;&gt; c &gt;&gt; f.d;
+</span><span class='line'>return in;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}
+</span><span class='line'>//重载&lt;&lt;，便于输出
+</span><span class='line'>ostream &amp;operator&lt;&lt;(ostream &amp;out, Fraction &amp;f)// non-const reference
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>out&lt;&lt; f.n &lt;&lt; '/' &lt;&lt; f.d;
+</span><span class='line'>return out;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int main()
+</span><span class='line'>{&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Fraction f1;
+</span><span class='line'>Fraction f2;
+</span><span class='line'>cin&gt;&gt;f1&gt;&gt;f2;
+</span><span class='line'>cout&lt;&lt;f1+f2&lt;&lt;endl;//temp f1+f2, operator&lt;&lt;(cout, temp), it's not allowed to bind the temporary value to a non-const reference
+</span><span class='line'>return 0;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>  在测试重载&lt;&lt;运算符时，输出定义的对象cout&lt;&lt;f1， 没有问题，但当我试着输出cout&lt;&lt;f1+f2时，编译出现了错误
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>error: no match for ‘operator&lt;&lt;’ in ‘std::cout &lt;&lt; operator+(((Fraction&amp;)(&amp; f1)), ((Fraction&amp;)(&amp; f2)))’
+</span><span class='line'> note:                 std::ostream&amp; operator&lt;&lt;(std::ostream&amp;, Fraction&amp;)</span></code></pre></td></tr></table></div></figure></notextile></div>
+后来查询了资料后，发现是重载&lt;&lt;运算符时，形参的类型导致的。形参f的类型是Fraction &amp;， 而我调用cout&lt;&lt;f1+f2时， f1+f2会调用 f1.operator+(f2)并返回一个临时结果，而错误就出现在这个临时结果上，临时结果是不能改变的，而重载&lt;&lt;时参数的是Fraction &amp;，而不是const Fraction &amp;，而在C++中是不允许把temporary绑定到non-const reference上的，所以编译器会出现以上的错误。</p>
+
+<p>这个练习的所有代码:
+File /home/Alvin/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
+]]></content>
+  </entry>
+  
+</feed>

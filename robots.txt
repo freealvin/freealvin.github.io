@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://freealvin.github.io/sitemap.xml 

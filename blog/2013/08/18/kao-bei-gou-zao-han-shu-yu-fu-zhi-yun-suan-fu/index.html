@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>拷贝构造函数与赋值运算符 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="总结一下：拷贝构造函数会逐一复制成员，所以如果对象里有指针，那么默认拷贝构造函数只会复制指针的内容，而不会为新对象分配相应的动态空间（存储指针所指向的内容），这样导致了两个对象的数据成员指向同一个地址，在释放空间时，导致同一块空间被释放两次这样的错误。同样赋值也会逐一复制成员， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://freealvin.github.io/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:freealvin.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">拷贝构造函数与赋值运算符</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-18T06:55:00+08:00" pubdate data-updated="true">Aug 18<sup>th</sup>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>总结一下：拷贝构造函数会逐一复制成员，所以如果对象里有指针，那么默认拷贝构造函数只会复制指针的内容，而不会为新对象分配相应的动态空间（存储指针所指向的内容），这样导致了两个对象的数据成员指向同一个地址，在释放空间时，导致同一块空间被释放两次这样的错误。同样赋值也会逐一复制成员，有指针成员也会导致析构这样释放空间的操作时出现错误，所以一般需要重写拷贝构造函数的类，也需要重写“=”赋值运算符。</p>
+
+<!--more-->
+
+
+
+
+<h2>When do I need to write a copy constructor?</h2>
+
+
+<p>First, you should understand that if you do not declare a copy constructor, the compiler gives you one implicitly. The implicit copy constructor does a member-wise copy of the source object.
+For example, given the class:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class MyClass {
+</span><span class='line'>      int x;
+</span><span class='line'>      char c;
+</span><span class='line'>      std::string s;
+</span><span class='line'>  };</span></code></pre></td></tr></table></div></figure>
+
+
+<p>the compiler-provided copy constructor is exactly equivalent to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyClass::MyClass( const MyClass& other ) :
+</span><span class='line'>     x( other.x ), c( other.c ), s( other.s )
+</span><span class='line'>  {}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In many cases, this is sufficient. However, there are certain circumstances where the member-wise copy version is not good enough. By far, the most common reason the default copy constructor is not sufficient is because the object contains raw pointers and you need to take a &ldquo;deep&rdquo; copy of the pointer. That is, you don&rsquo;t want to copy the pointer itself; rather you want to copy what the pointer
+points to. Why do you need to take &ldquo;deep&rdquo; copies? This is typically because the instance owns the pointer; that is, the instance is responsible for calling delete on the pointer at some point (probably the destructor). If two objects end up calling delete on the same non-NULL pointer, heap corruption results.</p>
+
+<p>Rarely you will come across a class that does not contain raw pointers yet the default copy constructor is not sufficient. An example of this is when you have a reference-counted object.
+boost::shared_ptr&lt;> is example.</p>
+
+<h2>When do I need to write an assignment operator?</h2>
+
+
+<p>First, you should understand that if you do not declare an assignment operator, the compiler gives you one implicitly. The implicit assignment operator does member-wise assignment of each data member from the source object. For example, using the class above, the compiler-provided assignment operator isexactly equivalent to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyClass& MyClass::operator=( const MyClass& rhs ) {
+</span><span class='line'>      x = other.x;
+</span><span class='line'>      c = other.c;
+</span><span class='line'>      s = other.s;
+</span><span class='line'>      return *this;
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In general, any time you need to write your own custom copy constructor, you also need to write a custom assignment operator.
+File /home/Alvin/octopress/source/downloads/code/03copy_constructor_assignment.cpp could not be found</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-18T06:55:00+08:00" pubdate data-updated="true">Aug 18<sup>th</sup>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://freealvin.github.io/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu/" data-via="" data-counturl="http://freealvin.github.io/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/17/bu-de-bu-zhong-xie-de-kao-bei-gou-zao-han-shu/" title="Previous Post: 不得不重写的拷贝构造函数">&laquo; 不得不重写的拷贝构造函数</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan/" title="Next Post: 如何使同一个用户组的用户拥有一个目录的开发权">如何使同一个用户组的用户拥有一个目录的开发权 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/nihao-my-friends/">Nihao My Friends</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/">C语言的缩进和空白</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/at-and-thui-bian-yu-fa-2/">AT&amp;T汇编语法2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/">AT&amp;T汇编语言学习1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/">Linux中的正则表达式</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

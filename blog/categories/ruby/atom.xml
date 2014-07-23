@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | My Octopress Blog]]></title>
+  <link href="http://freealvin.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://freealvin.github.io/"/>
+  <updated>2014-07-23T20:02:28+08:00</updated>
+  <id>http://freealvin.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[如何从零开始学会 Ruby on Rails]]></title>
+    <link href="http://freealvin.github.io/blog/2013/08/28/ru-he-cong-ling-kai-shi-xue-hui-ruby-on-rails/"/>
+    <updated>2013-08-28T15:53:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2013/08/28/ru-he-cong-ling-kai-shi-xue-hui-ruby-on-rails</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>来自<a href="http://huacnlee.com/blog/how-to-start-learning-ruby-on-rails/">http://huacnlee.com/blog/how-to-start-learning-ruby-on-rails/</a>
+以下步骤请一步一步来，切勿心急跳过，最好连我上面的链接都不要提前点击！
+1.安装 Linux 或 Mac， 开发工具使用 Windows &amp; Linux &ndash;> Sublime Text 2, Mac &ndash;> TextMate 2 当然你也可以用 Vim 或 Sublime text 2;</p>
+
+<p>2.安装 Ruby 和 Rails 开发环境可以按照这个流程：《如何快速正确的安装 Ruby, Rails》;</p>
+
+<p>3.看完 <a href="http://guides.rubyonrails.org">http://guides.rubyonrails.org</a> 这里有 繁体版本；</p>
+
+<p>4.通过学习 Rails Guides 实现一个博客系统，包涵完整的功能(包括 UI)，预计两周；</p>
+
+<p>5.从头到尾一字不漏的看完 《应用 Rails 进行敏捷 Web 开发》；</p>
+
+<p>6.回头审视之前的博客设计和《应用 Rails 进行敏捷 Web 开发》的区别，可以再重新搞个博客;</p>
+
+<p>7.看完 《Getting Real》,预计两个小时；</p>
+
+<p>8.搞明白 Gem, RVM, Bundler 是什么；</p>
+
+<p>9.看完 《Rework》；</p>
+
+<p>10.学习 Git, 上 <a href="http://github.com">http://github.com</a> 并长期使用；</p>
+
+<p>11.看 <a href="http://railscasts.com">http://railscasts.com</a> 的视频教程，从 第一页 开始看，可以学到很多技巧，以免走弯路。</p>
+]]></content>
+  </entry>
+  
+</feed>

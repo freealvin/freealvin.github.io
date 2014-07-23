@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>如何使同一个用户组的用户拥有一个目录的开发权 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="1.添加项目组 1
+#groupadd poject
+2.添加获得project支持的用户 1
+2
+#useradd -G project alex #useradd -G project arod 3.创建目录 &lt;div class='bogus-wrapper'&gt;&lt; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:freealvin.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">如何使同一个用户组的用户拥有一个目录的开发权</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-20T06:17:00+08:00" pubdate data-updated="true">Aug 20<sup>th</sup>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>1.添加项目组
+  <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#groupadd poject</span></code></pre></td></tr></table></div></figure>
+2.添加获得project支持的用户</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#useradd -G project alex
+</span><span class='line'>     #useradd -G project arod</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.创建目录</p>
+
+<pre><code>&lt;div class='bogus-wrapper'&gt;&lt;notextile&gt;&lt;figure class='code'&gt;&lt;div class="highlight"&gt;&lt;table&gt;&lt;tr&gt;&lt;td class="gutter"&gt;&lt;pre class="line-numbers"&gt;&lt;span class='line-number'&gt;1&lt;/span&gt;
+</code></pre>
+
+<p></pre></td><td class='code'><pre><code class=''><span class='line'>#mkdir /srv/ahome</span></code></pre></td></tr></table></div></figure></notextile></div>
+4.把目录的用户组改为project</p>
+
+<pre><code>&lt;div class='bogus-wrapper'&gt;&lt;notextile&gt;&lt;figure class='code'&gt;&lt;div class="highlight"&gt;&lt;table&gt;&lt;tr&gt;&lt;td class="gutter"&gt;&lt;pre class="line-numbers"&gt;&lt;span class='line-number'&gt;1&lt;/span&gt;
+</code></pre>
+
+<p></pre></td><td class='code'><pre><code class=''><span class='line'>#chgrp project /srv/ahome</span></code></pre></td></tr></table></div></figure></notextile></div>
+5.更改目录的权限，是project用户组可以rwx,其他人没有任何权限
+  <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#chmod 770 /srv/ahome</span></code></pre></td></tr></table></div></figure></p>
+
+<p>6.切换到alex,并在/srv/ahome下创建一个文件，查看文件的权限</p>
+
+<pre><code> &lt;div class='bogus-wrapper'&gt;&lt;notextile&gt;&lt;figure class='code'&gt;&lt;div class="highlight"&gt;&lt;table&gt;&lt;tr&gt;&lt;td class="gutter"&gt;&lt;pre class="line-numbers"&gt;&lt;span class='line-number'&gt;1&lt;/span&gt;
+</code></pre>
+
+<p><span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#su &ndash; alex
+</span><span class='line'>     $touch abcd
+</span><span class='line'>     $ll</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<pre><code> 会发现abcd 的拥有者、group均为alex,而arod虽然对文件夹有rwx权限，但对于刚刚创建的文件可以删除却不能编辑
+</code></pre>
+
+<p>7.这就要用到SGID</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$exit
+</span><span class='line'>     #chomd 2770 /srv/ahome</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code> 这样执行者在执行的过程中会自动获得该程序用户组的支持 
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-20T06:17:00+08:00" pubdate data-updated="true">Aug 20<sup>th</sup>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan/" data-via="" data-counturl="http://freealvin.github.io/blog/2013/08/20/ru-he-shi-tong-%5B%3F%5D-ge-yong-hu-zu-de-yong-hu-yong-you-%5B%3F%5D-ge-mu-lu-de-kai-fa-quan/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/18/kao-bei-gou-zao-han-shu-yu-fu-zhi-yun-suan-fu/" title="Previous Post: 拷贝构造函数与赋值运算符">&laquo; 拷贝构造函数与赋值运算符</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/22/python-list/" title="Next Post: python list">python list &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/nihao-my-friends/">Nihao My Friends</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/">C语言的缩进和空白</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/at-and-thui-bian-yu-fa-2/">AT&amp;T汇编语法2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/at-and-thui-bian-yu-yan-xue-xi-1/">AT&amp;T汇编语言学习1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/26/linuxzhong-de-zheng-ze-biao-da-shi/">Linux中的正则表达式</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
