@@ -1,0 +1,71 @@
+---
+layout: post
+title: "java 类的final引用成员实例"
+date: 2015-04-11 08:32:47 +0800
+comments: true
+categories: 
+---
+
+final修饰符大都用于基本类型，或不可变类的域（如果类中的每个方法都不会改变其对象，这种类就是不可变的类。例如，String类就是一个不可变的类）。对于可变的类使用final修饰符可能会对读者造成混乱。例如，private final Date hiredate；
+
+仅仅意味着存储在hiredate变量中的*对象引用*在对象构造之后不能被改变，而不意味着hiredate对象是一个常量。任何方法都可以对hiredate引用的对象调用setTime更改器。
+
+
+``` java 
+	package per.alvin.demos;
+
+	public class User {
+		
+			private String name;
+			private int age;
+
+			public User(){
+		
+			}
+			public User(String name, int age){
+				this.name = name;
+				this.age = age;
+			}
+
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			public int getAge() {
+				return age;
+			}
+			public void setAge(int age) {
+				this.age = age;
+			}
+	}
+```
+
+
+``` java
+	package per.alvin.demos;
+
+	public class Item {
+		private final User user;
+	
+		public Item(User user){
+			this.user = user;
+		}
+		public User getUser() {
+			return user;
+		}
+
+		public static void main(String [] arags){
+			User alvin = new User("alvin", 22);
+			Item item = new Item(alvin);
+		
+			System.out.println(item.getUser().getName());
+			alvin.setName("nathan");
+			System.out.println(item.getUser().getName());
+		
+		}
+	}
+``` 
+
+
