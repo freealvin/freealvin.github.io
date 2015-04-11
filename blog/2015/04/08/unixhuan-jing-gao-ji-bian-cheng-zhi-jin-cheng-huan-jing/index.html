@@ -2,10 +2,10 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Category: Python - Alvin</title>
+  <title>Unix环境高级编程之进程环境 - Alvin</title>
   <meta name="author" content="Alvin">
 
-  <meta name="description" content="Category: python">
+  
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://freealvin.github.io/blog/categories/python">
+  <link rel="canonical" href="http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Alvin" type="application/atom+xml">
 
@@ -59,10 +59,10 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li >
+                <li class="active">
                     <a href="/">Blog</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="/blog/archives">Archives</a>
                 </li>
                 <li >
@@ -95,35 +95,16 @@
       <div id="main" class="container">
         <div id="content">
           <div class="row">
-  <div class="page-content col-md-9">
-    <article role="article">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Alvin" />
+    <meta itemprop="description" content="" />
+    <meta itemprop="url" content="http://freealvin.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
-        <header class="page-header">
-          
-          
-            <h1 class="entry-title">
-              Category: Python
-              
-            </h1>
-          
-        </header>
-      
-      <div class="entry-content">
-        <div id="blog-archives" class="category" itemscope itemtype="http://schema.org/Blog">
-<meta itemprop="name" content="Alvin" />
-<meta itemprop="description" content="" />
-<meta itemprop="url" content="http://freealvin.github.io" />
-
-
-
-  
-  <h2>2013</h2>
-
-<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-  
-<h1 itemprop="name headline"><a href="/blog/2013/08/27/windowsxia-pythonan-zhuang-mo-kuai/" itemprop="url">Windows下Python安装模块</a></h1>
-<p class="meta text-muted">
-  
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
 
 
 
@@ -136,101 +117,107 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-27T17:39:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">Aug 27<sup>th</sup>, 2013</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/python/'>python</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-
-
-<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-  
-<h1 itemprop="name headline"><a href="/blog/2013/08/22/python-dict/" itemprop="url">Python Dict</a></h1>
-<p class="meta text-muted">
-  
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-08T19:30:59+08:00"  data-updated="true" itemprop="datePublished dateCreated">Apr 8<sup>th</sup>, 2015</time>
+        
+           | <a href="#disqus_thread" itemprop="discussionUrl"
+             data-disqus-identifier="http://freealvin.github.io">Comments</a>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Unix环境高级编程之进程环境
+        
+    </h1>
+    
+  </header>
 
 
+<div class="entry-content clearfix" itemprop="articleBody"><p>当执行程序时，main函数是如何被调用的；命令行参数如何传送给程序；典型的存储器布局是什么样的；如何分配额外的存储空间；进程如何使用环境变量；不同进程的终止形式。</p>
+
+<!--more--->
 
 
+<h2>main函数</h2>
 
+<p>当内核执行C程序时，在调用main前先调用一个特殊的启动例程。可执行文件将词启动例程指定微程序的起始位置——这由连接编辑器设置，而连接编辑器由C编译器调用，启动例程从内核获得命令行参数和环境变量。</p>
 
+<h2>进程终止</h2>
 
+<p>八种方式可以终止进程，5种为正常终止，它们是：
+1.从main返回
+2.调用exit
+3.调用<em>exit或</em>EXIT
+4.最后一个线程从其启动例程返回
+5.最后一个线程调用pthread_exit</p>
 
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-22T13:07:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">Aug 22<sup>nd</sup>, 2013</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/python/'>python</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-
-
-<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-  
-<h1 itemprop="name headline"><a href="/blog/2013/08/22/python-list/" itemprop="url">Python List</a></h1>
-<p class="meta text-muted">
-  
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-22T12:18:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">Aug 22<sup>nd</sup>, 2013</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/python/'>python</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
+<p>异常的终止方式有三种
+6.调用abort
+7.接到一个信号并终止
+8.最后一个线程对取消请求做出相应</p>
 </div>
 
-      </div>
-      
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Alvin</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-08T19:30:59+08:00"  data-updated="true" itemprop="datePublished dateCreated">Apr 8<sup>th</sup>, 2015</time>
+          
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/" data-via="" data-counturl="http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2015/04/04/liu-ge-yue-hou/" title="Previous Post: 六个月后">&laquo; 六个月后</a></li>
+            
+            
+            <li class="next"><a href="/blog/2015/04/11/java-lei-de-finalyin-yong-cheng-yuan-shi-li/" title="Next Post: java 类的final引用成员实例">java 类的final引用成员实例 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
     </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
     
   </div>
 
   
-    <aside class="sidebar col-md-3">
-      
-        <section class="panel panel-default">
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Recent Posts</h3>
   </div>
@@ -239,7 +226,7 @@
     
     <a class="list-group-item " href="/blog/2015/04/11/java-lei-de-finalyin-yong-cheng-yuan-shi-li/">Java 类的final引用成员实例</a>
     
-    <a class="list-group-item " href="/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/">Unix环境高级编程之进程环境</a>
+    <a class="list-group-item active" href="/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/">Unix环境高级编程之进程环境</a>
     
     <a class="list-group-item " href="/blog/2015/04/04/liu-ge-yue-hou/">六个月后</a>
     
@@ -272,10 +259,12 @@
   </ul>
 </section>
 
-      
-    </aside>
+    
+  </aside>
   
 </div>
+
+
 
         </div>
       </div>
@@ -297,7 +286,10 @@
       var disqus_shortname = 'freealvin';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/';
+        var disqus_url = 'http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

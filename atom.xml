@@ -4,7 +4,7 @@
   <title><![CDATA[Alvin]]></title>
   <link href="http://freealvin.github.io/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2014-07-24T00:11:21+08:00</updated>
+  <updated>2015-04-11T17:56:09+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
@@ -12,6 +12,168 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java 类的final引用成员实例]]></title>
+    <link href="http://freealvin.github.io/blog/2015/04/11/java-lei-de-finalyin-yong-cheng-yuan-shi-li/"/>
+    <updated>2015-04-11T08:32:47+08:00</updated>
+    <id>http://freealvin.github.io/blog/2015/04/11/java-lei-de-finalyin-yong-cheng-yuan-shi-li</id>
+    <content type="html"><![CDATA[<p>final修饰符大都用于基本类型，或不可变类的域（如果类中的每个方法都不会改变其对象，这种类就是不可变的类。例如，String类就是一个不可变的类）。对于可变的类使用final修饰符可能会对读者造成混乱。例如，private final Date hiredate；</p>
+
+<p>仅仅意味着存储在hiredate变量中的<em>对象引用</em>在对象构造之后不能被改变，而不意味着hiredate对象是一个常量。任何方法都可以对hiredate引用的对象调用setTime更改器。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">per</span><span class="o">.</span><span class="na">alvin</span><span class="o">.</span><span class="na">demos</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+</span><span class='line'>  
+</span><span class='line'>      <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">public</span> <span class="nf">User</span><span class="o">(){</span>
+</span><span class='line'>  
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">){</span>
+</span><span class='line'>          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>          <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">per</span><span class="o">.</span><span class="na">alvin</span><span class="o">.</span><span class="na">demos</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">final</span> <span class="n">User</span> <span class="n">user</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">Item</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">){</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">=</span> <span class="n">user</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">User</span> <span class="nf">getUser</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span> <span class="n">arags</span><span class="o">){</span>
+</span><span class='line'>      <span class="n">User</span> <span class="n">alvin</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="s">&quot;alvin&quot;</span><span class="o">,</span> <span class="mi">22</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">(</span><span class="n">alvin</span><span class="o">);</span>
+</span><span class='line'>  
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>      <span class="n">alvin</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;nathan&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Unix环境高级编程之进程环境]]></title>
+    <link href="http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/"/>
+    <updated>2015-04-08T19:30:59+08:00</updated>
+    <id>http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing</id>
+    <content type="html"><![CDATA[<p>当执行程序时，main函数是如何被调用的；命令行参数如何传送给程序；典型的存储器布局是什么样的；如何分配额外的存储空间；进程如何使用环境变量；不同进程的终止形式。</p>
+
+<!--more--->
+
+
+<h2>main函数</h2>
+
+<p>当内核执行C程序时，在调用main前先调用一个特殊的启动例程。可执行文件将词启动例程指定微程序的起始位置——这由连接编辑器设置，而连接编辑器由C编译器调用，启动例程从内核获得命令行参数和环境变量。</p>
+
+<h2>进程终止</h2>
+
+<p>八种方式可以终止进程，5种为正常终止，它们是：
+1.从main返回
+2.调用exit
+3.调用<em>exit或</em>EXIT
+4.最后一个线程从其启动例程返回
+5.最后一个线程调用pthread_exit</p>
+
+<p>异常的终止方式有三种
+6.调用abort
+7.接到一个信号并终止
+8.最后一个线程对取消请求做出相应</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[六个月后]]></title>
+    <link href="http://freealvin.github.io/blog/2015/04/04/liu-ge-yue-hou/"/>
+    <updated>2015-04-04T17:08:13+08:00</updated>
+    <id>http://freealvin.github.io/blog/2015/04/04/liu-ge-yue-hou</id>
+    <content type="html"><![CDATA[<p>六个月后重新找回Octopress开始写作的我，开始知道自己的未来的目标，精通java，阅读Mysql类的书，开始去真正了解分布式系统设计，向我的同学学习，了解机器学习。</p>
+
+<p>我知道现在白天实习，晚上去抽时间学习比较累，但有目标的人心里总是有底的，我相信我能坚持。加油。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[C语言的缩进和空白]]></title>
@@ -1291,151 +1453,6 @@ File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overloa
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cin>>f1>>f2;</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Determine if Two Binary Trees Are Equal]]></title>
-    <link href="http://freealvin.github.io/blog/2013/08/10/determine-if-two-binary-trees-are-equal/"/>
-    <updated>2013-08-10T21:21:00+08:00</updated>
-    <id>http://freealvin.github.io/blog/2013/08/10/determine-if-two-binary-trees-are-equal</id>
-    <content type="html"><![CDATA[<p>What would be the efficient algorithm to find if two given binary trees are equal &ndash; in structure and content?</p>
-
-<!--more-->
-
-
-<p>File /home/Alvin/git_projects/octopress/source/downloads/code/binary_tree_equal.c could not be found</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Test Chinese Fonts]]></title>
-    <link href="http://freealvin.github.io/blog/2013/08/10/test-chinese-fonts/"/>
-    <updated>2013-08-10T20:58:00+08:00</updated>
-    <id>http://freealvin.github.io/blog/2013/08/10/test-chinese-fonts</id>
-    <content type="html"><![CDATA[<p>解决CentOS中文显示问题：
-一：安装中文支持</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># yum install "@Chinese Support"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>二：安装字体</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># yum install fonts-chinese.noarch</span></code></pre></td></tr></table></div></figure>
-
-
-<p>三：修改配置文件</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># vi /etc/sysconfig/i18n</span></code></pre></td></tr></table></div></figure>
-
-
-<p>将</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>LANG="en_US.UTF-8" 
-</span><span class='line'>SYSFONT="latarcyrheb-sun16"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改为</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>LANG="zh_CN.GB18030" 
-</span><span class='line'>LANGUAGE="zh_CN.GB18030:zh_CN.GB2312:zh_CN" 
-</span><span class='line'>SUPPORTED="zh_CN.UTF-8:zh_CN:zh:en_US.UTF-8:en_US:en" 
-</span><span class='line'>SYSFONT="lat0-sun16"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>四：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># cd /usr/share/fonts/
-</span><span class='line'># fc-cache   -fv</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recreate a Local Repository of Octopress Blog]]></title>
-    <link href="http://freealvin.github.io/blog/2013/08/10/recreate-a-local-responsitory-of-octopress-blog/"/>
-    <updated>2013-08-10T19:04:00+08:00</updated>
-    <id>http://freealvin.github.io/blog/2013/08/10/recreate-a-local-responsitory-of-octopress-blog</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<h2>Recreating a local Octopress repository </h2>
-
-
-<p>To recreate the local directory structure of an existing Octopress blog, follow these instructions.</p>
-
-<h2>Clone your blog to the new machine</h2>
-
-
-<p>First you need to clone the source branch to the local octopress folder.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git octopress</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then clone the master branch to the _deploy subfolder.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
-</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then run the rake installation to configure everything</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install bundler
-</span><span class='line'>$ rbenv rehash
-</span><span class='line'>$ bundle install
-</span><span class='line'>$ rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h2> Pushing changes from two different machines</h2>
-
-
-<p>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers. From the first machine do the following whenever you’ve made changes:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake generate
-</span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am "Some comment here." 
-</span><span class='line'>$ git push origin source  # update the remote source branch 
-</span><span class='line'>$ rake deploy             # update the remote master branch</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then on the other machine, you need to pull those changes.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
-</span><span class='line'>$ git pull origin source  # update the local source branch
-</span><span class='line'>$ cd ./_deploy
-</span><span class='line'>$ git pull origin master  # update the local master branch</span></code></pre></td></tr></table></div></figure>
-
-
 
 ]]></content>
   </entry>

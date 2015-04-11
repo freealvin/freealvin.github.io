@@ -3,6 +3,24 @@
   
   
   <url>
+    <loc>http://freealvin.github.io/blog/2015/04/11/java-lei-de-finalyin-yong-cheng-yuan-shi-li/</loc>
+    <lastmod>2015-04-11T08:32:47+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://freealvin.github.io/blog/2015/04/08/unixhuan-jing-gao-ji-bian-cheng-zhi-jin-cheng-huan-jing/</loc>
+    <lastmod>2015-04-08T19:30:59+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://freealvin.github.io/blog/2015/04/04/liu-ge-yue-hou/</loc>
+    <lastmod>2015-04-04T17:08:13+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://freealvin.github.io/blog/2013/12/02/cyu-yan-de-suo-jin-he-kong-bai/</loc>
     <lastmod>2013-12-02T21:31:00+08:00</lastmod>
     <priority>0.8</priority>
@@ -137,21 +155,21 @@
   
   <url>
     <loc>http://freealvin.github.io/blog/archives/</loc>
-    <lastmod>2014-07-24T00:11:21+08:00</lastmod>
+    <lastmod>2015-04-11T17:56:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://freealvin.github.io/</loc>
-    <lastmod>2014-07-24T00:11:21+08:00</lastmod>
+    <lastmod>2015-04-11T17:56:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://freealvin.github.io/about/</loc>
-    <lastmod>2014-07-24T00:11:21+08:00</lastmod>
+    <lastmod>2015-04-11T17:56:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
