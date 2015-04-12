@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础 | Alvin]]></title>
   <link href="http://freealvin.github.io/blog/categories/ji-chu/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2015-04-11T17:56:09+08:00</updated>
+  <updated>2015-04-13T02:09:06+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java参数传递]]></title>
+    <link href="http://freealvin.github.io/blog/2015/04/13/javacan-shu-chuan-di/"/>
+    <updated>2015-04-13T01:55:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2015/04/13/javacan-shu-chuan-di</id>
+    <content type="html"><![CDATA[<p>参数传递分为值传递和引用传递，Java是面向对象的编程语言，又是如何传递参数的呢？</p>
+
+<!--more-->
+
+
+<p>Java的值传递和其他语言的类似，没有什么特别的，这里主要介绍对象作为参数的传递。对象作为参数，传递的是对象的引用吗？其实不是。</p>
+
+<p>先面给出一个例子
+```java</p>
+
+<p>public static void swap(Employee x, Employee y)
+{</p>
+
+<pre><code>Employee temp = x;
+x = y;
+y = temp;
+</code></pre>
+
+<p>}
+```</p>
+
+<p>如果Java对对象采用的是引用调用，那么这个方法就能实现交换数据的效果：</p>
+
+<p>```java</p>
+
+<pre><code>Employee a = new Employee("alvin");
+Employee b = new Employee("nathan");
+swap(a,b);
+</code></pre>
+
+<p>```
+结果会是a变成nathan， b变成alvin吗？最终的结果并没有变化，a仍为alvin，b也仍为nathan。</p>
+
+<p>这个过程说明，Java采用的不是引用调用。实际上，对象引用进行的是<bold>值传递</bold>。</p>
+
+<p>下面总结一下：</p>
+
+<pre><code>1. 方法不能修改一个基本数据类型的参数
+
+2. 方法可以改变对象参数的状态
+
+3. 方法不能对对象参数引用一个新对象。
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java 类的final引用成员实例]]></title>

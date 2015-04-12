@@ -4,7 +4,7 @@
   <title><![CDATA[Alvin]]></title>
   <link href="http://freealvin.github.io/atom.xml" rel="self"/>
   <link href="http://freealvin.github.io/"/>
-  <updated>2015-04-11T17:56:09+08:00</updated>
+  <updated>2015-04-13T02:09:06+08:00</updated>
   <id>http://freealvin.github.io/</id>
   <author>
     <name><![CDATA[Alvin]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Java参数传递]]></title>
+    <link href="http://freealvin.github.io/blog/2015/04/13/javacan-shu-chuan-di/"/>
+    <updated>2015-04-13T01:55:00+08:00</updated>
+    <id>http://freealvin.github.io/blog/2015/04/13/javacan-shu-chuan-di</id>
+    <content type="html"><![CDATA[<p>参数传递分为值传递和引用传递，Java是面向对象的编程语言，又是如何传递参数的呢？</p>
+
+<!--more-->
+
+
+<p>Java的值传递和其他语言的类似，没有什么特别的，这里主要介绍对象作为参数的传递。对象作为参数，传递的是对象的引用吗？其实不是。</p>
+
+<p>先面给出一个例子</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="n">Employee</span> <span class="n">x</span><span class="o">,</span> <span class="n">Employee</span> <span class="n">y</span><span class="o">)</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="n">Employee</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">y</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果Java对对象采用的是引用调用，那么这个方法就能实现交换数据的效果：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Employee</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">&quot;alvin&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Employee</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">&quot;nathan&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">swap</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结果会是a变成nathan， b变成alvin吗？最终的结果并没有变化，a仍为alvin，b也仍为nathan。</p>
+
+<p>这个过程说明，Java采用的不是引用调用。实际上，对象引用进行的是<bold>值传递</bold>。</p>
+
+<p>下面总结一下：</p>
+
+<pre><code>1. 方法不能修改一个基本数据类型的参数
+
+2. 方法可以改变对象参数的状态
+
+3. 方法不能对对象参数引用一个新对象。
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java 类的final引用成员实例]]></title>
@@ -1431,29 +1486,6 @@ File /home/Alvin/git_projects/octopress/source/downloads/code/03copy_constructor
 
 <p>这个练习的所有代码:
 File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[C++ Operator Overloading]]></title>
-    <link href="http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload/"/>
-    <updated>2013-08-12T16:42:00+08:00</updated>
-    <id>http://freealvin.github.io/blog/2013/08/12/c-plus-plus-opeator-overload</id>
-    <content type="html"><![CDATA[<p>In C++ the overloading principle applies not only to functions, but to operators too. That is, of operators can be extended to work not just with built-in types but also classes. A programmer can provide his or her own operator to a class by overloading the built-in operator to perform some specific computation when the operator is used on objects of that class.</p>
-
-<!--more-->
-
-
-<h2>An example of operator overloading</h2>
-
-
-<p>File /home/Alvin/git_projects/octopress/source/downloads/code/03operator_overload.cpp could not be found</p>
-
-<p>In order to allow operations like cin>>f, in above code we overloaded the &ldquo;>>&#8221;operator. And in order to access the private memebers in the implementations, we use keyworkd &#8220;friend&rdquo;.A important trick that can be seen in this general way of overloading IO is the returning reference for istream/ostream which is needed in order to use them in a recursive manner:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cin>>f1>>f2;</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
